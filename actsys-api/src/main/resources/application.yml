@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: @build.profile.id@
+  application:
+    name: mamahao-ass-api
+  aop:
+    auto: true
+

@@ -1,0 +1,60 @@
+##服务器配置
+server:
+  port: 8080
+  context-path:
+  tomcat:
+    uri-encoding: utf-8
+    compression: on
+
+##监控配置
+management:
+  context-path: /manager
+  port: 8080
+endpoints:
+  shutdown:
+    enabled: false
+
+
+##数据源
+datasource:
+  master:
+    url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: mamahao
+  slave:
+      url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+      driverClassName: com.mysql.jdbc.Driver
+      username: root
+      password: mamahao
+
+
+##mybatis配置
+mybatis:
+  master:
+    shardId: 0
+    shardType: SHARD_TYPE_MAIN
+    master: true
+    configLocation: classpath:/mybatis/mybatisCfg.xml
+  slave:
+    shardId: 1
+    shardType: SHARD_TYPE_MAIN
+    master: false
+    configLocation: classpath:/mybatis/mybatisCfg.xml
+
+##注册中心配置
+eureka:
+  client:
+    service-url:
+#      defaultZone: http://192.168.10.201:8080/eureka/v2/
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    metadata-map:
+      instanceId: ${spring.application.name}:${random.value}
+
+
+my:
+  profile:
+    env:
+      name: dev-env
