@@ -1,0 +1,14 @@
+spring boot 多数据源：
+http://blog.csdn.net/catoop/article/details/50575038
+
+读写分离：
+http://blog.csdn.net/xtj332/article/details/43953699
+
+一主多从：
+http://blog.csdn.net/fairyhawk/article/details/7937597
+
+aop：
+http://my.oschina.net/itblog/blog/211693
+
+spring mybatis:
+https://segmentfault.com/q/1010000004365140
