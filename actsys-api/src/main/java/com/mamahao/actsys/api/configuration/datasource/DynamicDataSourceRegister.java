@@ -74,7 +74,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
             Map<String, Object> dsMap = propertyResolver.getSubProperties(dsPrefix + ".");
             DataSource ds = buildDataSource(dsMap);
             targetDataSources.put(dsPrefix, ds);
-            dataBinder(ds, env);
+            bindDataSource(ds, env);
         }
     }
 
@@ -89,12 +89,12 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
         dsMap.put("password",propertyResolver.getProperty("password"));
 
         defaultDataSource = buildDataSource(dsMap);
-        dataBinder(defaultDataSource,env);
+        bindDataSource(defaultDataSource,env);
     }
 
-    private void dataBinder(DataSource dataSource, Environment env) {
+    private void bindDataSource(DataSource dataSource, Environment env) {
         RelaxedDataBinder dataBinder = new RelaxedDataBinder(dataSource);
-        //dataBinder.setValidator(new LocalValidatorFactory().run(this.applicationContext));
+        //bindDataSource.setValidator(new LocalValidatorFactory().run(this.applicationContext));
         dataBinder.setConversionService(conversionService);
         dataBinder.setIgnoreNestedProperties(false);//false
         dataBinder.setIgnoreInvalidFields(false);//false
