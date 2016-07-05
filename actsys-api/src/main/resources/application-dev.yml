@@ -28,11 +28,6 @@ eureka:
     metadata-map:
       instanceId: ${spring.application.name}:${random.value}
 
-
-my:
-  profile:
-    env:
-      name: dev-env
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -58,5 +53,7 @@ custom:
       password: mamahao
 
 mybatis:
+  config:
     mapper-locations: classpath*:mapper/*Mapper.xml
     type-aliases-package: com.mamahao.actsys.api.po
+    base-package: com.mamahao.actsys.api.mapper

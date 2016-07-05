@@ -18,6 +18,8 @@ public class Entity {
     private Integer page;
     @Transient
     private Integer pageSize;
+    @Transient
+    protected long version;
 
     public Long getId() {
         return id;
@@ -41,5 +43,10 @@ public class Entity {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

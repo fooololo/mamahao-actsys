@@ -11,14 +11,16 @@ import org.springframework.core.io.Resource;
  * Time           :   12:03
  * Description    :
  */
-@ConfigurationProperties(prefix = MybatisProperties.MYBATIS_PREFIX)
+//@Component
+@ConfigurationProperties(prefix = "mybatis.config")
 public class MybatisProperties {
-
-    public static final String MYBATIS_PREFIX = "mybatis";
-
     private String config;
+//    @NotBlank(message = "mapperLocations 不能为空")
     private Resource[] mapperLocations;
+//    @NotBlank(message = "typeAliasesPackage 不能为空")
     private String typeAliasesPackage;
+//    @NotBlank(message = "basePackage 不能为空")
+    private String basePackage;
     private String typeHandlersPackage;
     private boolean checkConfigLocation = false;
     private ExecutorType executorType = ExecutorType.SIMPLE;
@@ -37,6 +39,14 @@ public class MybatisProperties {
 
     public void setMapperLocations(Resource[] mapperLocations) {
         this.mapperLocations = mapperLocations;
+    }
+
+    public String getBasePackage() {
+        return basePackage;
+    }
+
+    public void setBasePackage(String basePackage) {
+        this.basePackage = basePackage;
     }
 
     public String getTypeHandlersPackage() {

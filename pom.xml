@@ -24,6 +24,7 @@
         <google.guava.version>19.0</google.guava.version>
         <project.build.encoding>UTF-8</project.build.encoding>
         <docker.image.prefix>mamhao-ms-artchetype</docker.image.prefix>
+        <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
         <logback.version>1.1.3</logback.version>
         <mybatis.version>3.4.0</mybatis.version>
         <mybatis.generator.version>1.3.2</mybatis.generator.version>
@@ -103,7 +104,11 @@
                 <artifactId>commons-beanutils</artifactId>
                 <version>${commons.bean.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>

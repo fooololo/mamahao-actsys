@@ -17,9 +17,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * Company        :   mamahao.com
@@ -28,10 +30,9 @@ import javax.sql.DataSource;
  * Time           :   14:12
  * Description    :
  */
-@SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
-@ConditionalOnClass({ SqlSessionFactory.class, SqlSessionFactoryBean.class })
 @EnableConfigurationProperties(MybatisProperties.class)
+@ConditionalOnClass({ SqlSessionFactory.class, SqlSessionFactoryBean.class })
 @AutoConfigureAfter(DataSourceAutoConfiguration.class)
 public class MybatisAutoConfiguration {
     @Autowired
@@ -80,5 +81,20 @@ public class MybatisAutoConfiguration {
         return new SqlSessionTemplate(sqlSessionFactory,
                 this.properties.getExecutorType());
     }
+
+//    @Bean
+//    public MapperScannerConfigurer mapperScannerConfigurer() {
+//        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+//        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
+////        mapperScannerConfigurer.setBasePackage(properties.getBasePackage());
+//        mapperScannerConfigurer.setBasePackage("com.mamahao.actsys.api.mapper");
+//        Properties properties = new Properties();
+//        // 这里要特别注意，不要把IMapper放到 basePackage 中，也就是不能同其他Mapper一样被扫描到。
+//        properties.setProperty("mappers", IMapper.class.getName());
+//        properties.setProperty("notEmpty", "false");
+//        properties.setProperty("IDENTITY", "MYSQL");
+//        mapperScannerConfigurer.setProperties(properties);
+//        return mapperScannerConfigurer;
+//    }
 
 }
