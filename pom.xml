@@ -12,6 +12,7 @@
         <module>actsys-api</module>
         <module>actsys-dto</module>
         <module>acysys-ui</module>
+        <module>actsys-api-02</module>
     </modules>
     <packaging>pom</packaging>
     <properties>

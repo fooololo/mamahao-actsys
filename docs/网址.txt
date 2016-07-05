@@ -12,3 +12,6 @@ http://my.oschina.net/itblog/blog/211693
 
 spring mybatis:
 https://segmentfault.com/q/1010000004365140
+
+读写分离插件：
+https://github.com/fooololo/spring-boot-mybatis-rw
