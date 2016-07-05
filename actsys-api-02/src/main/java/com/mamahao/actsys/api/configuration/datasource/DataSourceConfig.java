@@ -9,6 +9,7 @@ package com.mamahao.actsys.api.configuration.datasource;
  */
 public class DataSourceConfig {
     private String name;
+    private boolean master = false;
     private String type;
     private String driverClassName;
     private String username;
@@ -20,6 +21,14 @@ public class DataSourceConfig {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isMaster() {
+        return master;
+    }
+
+    public void setMaster(boolean master) {
+        this.master = master;
     }
 
     public String getType() {

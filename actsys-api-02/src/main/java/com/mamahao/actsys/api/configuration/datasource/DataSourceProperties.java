@@ -1,6 +1,7 @@
 package com.mamahao.actsys.api.configuration.datasource;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -11,24 +12,16 @@ import java.util.List;
  * Time           :   21:01
  * Description    :
  */
-@ConfigurationProperties(prefix = "datasource")
+@ConfigurationProperties(prefix = "datasources")
+@Component
 public class DataSourceProperties {
-    private DataSourceConfig master;
-    private List<DataSourceConfig> slaves;
+    private List<DataSourceConfigGroup> groups;
 
-    public DataSourceConfig getMaster() {
-        return master;
+    public List<DataSourceConfigGroup> getGroups() {
+        return groups;
     }
 
-    public void setMaster(DataSourceConfig master) {
-        this.master = master;
-    }
-
-    public List<DataSourceConfig> getSlaves() {
-        return slaves;
-    }
-
-    public void setSlaves(List<DataSourceConfig> slaves) {
-        this.slaves = slaves;
+    public void setGroups(List<DataSourceConfigGroup> groups) {
+        this.groups = groups;
     }
 }
