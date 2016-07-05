@@ -11,11 +11,14 @@ import java.util.List;
  * Time           :   14:35
  * Description    :
  */
-public class DynamicContextHolder {
+public class DynamicContextHolder{
     private static final ThreadLocal<String> holder = new ThreadLocal<String>();
     public static List<String> dataSourceIds = Lists.newArrayList();
     public static void setDataSourceKey(String key){
         holder.set(key);
+    }
+    public static void setDefaultDataSource(){
+        holder.set("defaultDataSource");
     }
     public static String getDataSourceKey(){
        return holder.get();

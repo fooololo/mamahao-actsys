@@ -66,6 +66,10 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
         registry.registerBeanDefinition("dataSource",beanDefinition);
     }
 
+    /**
+     *初始化其他数据源
+     * @param env
+     */
     private void initTargetDataSources(Environment env) {
         // 读取配置文件获取更多数据源，也可以通过defaultDataSource读取数据库获取更多数据源
         RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "custom.datasource.");
@@ -79,8 +83,12 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
     }
 
 
+    /**
+     * 初始化默认数据源（主数据源）
+     * @param env
+     */
     private void initDefaultDataSource(Environment env) {
-        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env,"spring.datasource");
+        RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env,"spring.datasource.");
         Map<String,Object> dsMap = Maps.newHashMap();
         dsMap.put("type",propertyResolver.getProperty("type"));
         dsMap.put("driver-class-name",propertyResolver.getProperty("driver-class-name"));
@@ -121,7 +129,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
             }
             Class<? extends DataSource> dataSourceType
                     = (Class<? extends DataSource>) Class.forName(String.valueOf(type));
-            String driverClassName = String.valueOf(dsMap.get("driver-class-nam"));
+            String driverClassName = String.valueOf(dsMap.get("driver-class-name"));
             String url = String.valueOf(dsMap.get("url"));
             String username = String.valueOf(dsMap.get("username"));
             String password = String.valueOf(dsMap.get("password"));

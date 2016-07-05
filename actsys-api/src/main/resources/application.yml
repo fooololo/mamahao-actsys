@@ -2,7 +2,7 @@ spring:
   profiles:
     active: @build.profile.id@
   application:
-    name: mamahao-ass-api
+    name: mamahao-actsys-api
   aop:
     auto: true
 
