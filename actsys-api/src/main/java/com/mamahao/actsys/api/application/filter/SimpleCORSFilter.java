@@ -1,4 +1,4 @@
-package com.mamahao.actsys.api.core.exception.filter;
+package com.mamahao.actsys.api.application.filter;
 
 import com.mamahao.actsys.api.utils.HttpRequestUtils;
 import org.springframework.stereotype.Component;

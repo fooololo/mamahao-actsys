@@ -1,10 +1,10 @@
 package com.mamahao.actsys.api.service.demo.impl;
 
 import com.mamahao.actsys.api.configuration.datasource.annotation.TargetDataSource;
-import com.mamahao.actsys.api.service.AbstractService;
-import com.mamahao.actsys.api.service.demo.DemoService;
 import com.mamahao.actsys.api.mapper.DemoMapper;
 import com.mamahao.actsys.api.po.Demo;
+import com.mamahao.actsys.api.service.AbstractService;
+import com.mamahao.actsys.api.service.demo.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.common.BaseMapper;

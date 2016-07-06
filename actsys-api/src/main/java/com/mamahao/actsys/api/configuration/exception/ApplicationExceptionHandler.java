@@ -1,7 +1,7 @@
 package com.mamahao.actsys.api.configuration.exception;
 
-import com.mamahao.actsys.api.core.exception.BizException;
-import com.mamahao.actsys.api.core.exception.IllegalParamException;
+import com.mamahao.actsys.api.application.exception.BizException;
+import com.mamahao.actsys.api.application.exception.IllegalParamException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

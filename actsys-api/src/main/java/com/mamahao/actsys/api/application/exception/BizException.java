@@ -1,4 +1,4 @@
-package com.mamahao.actsys.api.core.exception;
+package com.mamahao.actsys.api.application.exception;
 
 /**
  * Company        :   mamahao.com
