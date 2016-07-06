@@ -1,6 +1,7 @@
 package com.mamahao.actsys.api.po;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Company        :   mamahao.com
@@ -9,7 +10,7 @@ import javax.persistence.*;
  * Time           :   16:08
  * Description    :
  */
-public class Entity {
+public class Entity implements Serializable{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

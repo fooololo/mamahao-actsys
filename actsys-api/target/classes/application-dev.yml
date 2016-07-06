@@ -14,7 +14,10 @@ endpoints:
   shutdown:
     enabled: false
 
-
+spring:
+  cache:
+    type: redis
+    cache-names: redis-cache
 
 
 ##注册中心配置
@@ -27,31 +30,6 @@ eureka:
     preferIpAddress: true
     metadata-map:
       instanceId: ${spring.application.name}:${random.value}
-
-
-#spring:
-#  datasource:
-#    type: com.alibaba.druid.pool.DruidDataSource
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-#    username: root
-#    password: mamahao
-#
-#custom:
-#  datasource:
-#    names: ds1,ds2
-#    ds1:
-#      type: com.alibaba.druid.pool.DruidDataSource
-#      driver-class-name: com.mysql.jdbc.Driver
-#      url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-#      username: root
-#      password: mamahao
-#    ds2:
-#      type: com.alibaba.druid.pool.DruidDataSource
-#      driver-class-name: com.mysql.jdbc.Driver
-#      url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-#      username: root
-#      password: mamahao
 
 #数据源配置
 datasource:
@@ -112,8 +90,25 @@ datasource:
           username: root
           password: mamahao
 
+#mybatis配置
 mybatis:
   config:
     mapper-locations: classpath*:mapper/*Mapper.xml
     type-aliases-package: com.mamahao.actsys.api.po
     base-package: com.mamahao.actsys.api.mapper
+
+#缓存redis配置
+cache:
+  redis:
+    database: 0
+    password:
+    host: 172.28.1.14
+    port: 6379
+    timeout: 100
+    expire: 1800
+    pool:
+      max-idle: 8
+      max-total: 20
+      max-wait-millis: 1000
+      min-idle: 0
+

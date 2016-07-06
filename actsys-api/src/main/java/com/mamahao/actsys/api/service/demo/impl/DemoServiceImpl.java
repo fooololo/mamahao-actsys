@@ -6,6 +6,7 @@ import com.mamahao.actsys.api.po.Demo;
 import com.mamahao.actsys.api.service.AbstractService;
 import com.mamahao.actsys.api.service.demo.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.common.BaseMapper;
 
@@ -27,7 +28,9 @@ public class DemoServiceImpl extends AbstractService<Demo,Long> implements DemoS
     }
 
     @TargetDataSource(name = "ms1_ds1")
+    @Cacheable(value = "demo_cache",keyGenerator = "wiselyKeyGenerator")
     public Demo findByPrimaryKey(Long id) {
+        System.out.println("没有走缓存...");
         return super.findByPrimaryKey(id);
     }
 

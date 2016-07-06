@@ -1,6 +1,11 @@
 {
   "groups": [
     {
+      "name": "cache.redis",
+      "type": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
       "name": "datasource",
       "type": "com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties",
       "sourceType": "com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties"
@@ -12,6 +17,45 @@
     }
   ],
   "properties": [
+    {
+      "name": "cache.redis.database",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "cache.redis.expire",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "defaultValue": 60
+    },
+    {
+      "name": "cache.redis.host",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
+      "name": "cache.redis.password",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
+      "name": "cache.redis.pool",
+      "type": "com.mamahao.actsys.api.configuration.redis.RedisPoolSchema",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
+      "name": "cache.redis.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "cache.redis.timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "defaultValue": 5
+    },
     {
       "name": "datasource.groups",
       "type": "java.util.List<com.mamahao.actsys.api.configuration.datasource.properties.DataSourceConfigGroup>",
