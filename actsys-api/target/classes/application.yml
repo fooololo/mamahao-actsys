@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: mamahao-actsys-api
+  aop:
+    auto: true
+

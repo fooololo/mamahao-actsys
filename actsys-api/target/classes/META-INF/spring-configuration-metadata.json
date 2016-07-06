@@ -1,0 +1,58 @@
+{
+  "groups": [
+    {
+      "name": "datasource",
+      "type": "com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties",
+      "sourceType": "com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties"
+    },
+    {
+      "name": "mybatis.config",
+      "type": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties",
+      "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "datasource.groups",
+      "type": "java.util.List<com.mamahao.actsys.api.configuration.datasource.properties.DataSourceConfigGroup>",
+      "sourceType": "com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties"
+    },
+    {
+      "name": "mybatis.config.base-package",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
+    },
+    {
+      "name": "mybatis.config.check-config-location",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "mybatis.config.config",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
+    },
+    {
+      "name": "mybatis.config.executor-type",
+      "type": "org.apache.ibatis.session.ExecutorType",
+      "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
+    },
+    {
+      "name": "mybatis.config.mapper-locations",
+      "type": "org.springframework.core.io.Resource[]",
+      "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
+    },
+    {
+      "name": "mybatis.config.type-aliases-package",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
+    },
+    {
+      "name": "mybatis.config.type-handlers-package",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
+    }
+  ],
+  "hints": []
+}
