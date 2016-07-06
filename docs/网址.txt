@@ -15,3 +15,6 @@ https://segmentfault.com/q/1010000004365140
 
 读写分离插件：
 https://github.com/fooololo/spring-boot-mybatis-rw
+
+redis 哨兵：
+https://github.com/spring-projects/spring-data-examples/blob/master/redis/cluster-sentinel/src/main/java/example/springdata/redis/sentinel/RedisSentinelApplication.java
