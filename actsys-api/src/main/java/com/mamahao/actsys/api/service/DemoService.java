@@ -1,4 +1,4 @@
-package com.mamahao.actsys.api.service.demo;
+package com.mamahao.actsys.api.service;
 
 import com.mamahao.actsys.api.po.Demo;
 

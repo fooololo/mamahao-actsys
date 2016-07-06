@@ -11,6 +11,14 @@ import javax.persistence.Table;
  */
 @Table(name = "t_test")
 public class Demo extends Entity{
+	public Demo() {
+	}
+
+	public Demo(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	private String name;
 	public String getName() {
 		return name;

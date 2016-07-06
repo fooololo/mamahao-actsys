@@ -1,4 +1,6 @@
-package com.mamahao.actsys.api.configuration.datasource;
+package com.mamahao.actsys.api.configuration.datasource.properties;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Company        :   mamahao.com
@@ -8,11 +10,18 @@ package com.mamahao.actsys.api.configuration.datasource;
  * Description    :
  */
 public class DataSourceConfig {
+    @NotBlank(message = "数据源名称不能为空")
     private String name;
     private boolean master = false;
+    @NotBlank(message = "数据源类型不能为空")
     private String type;
+    @NotBlank(message = "数据源驱动不能为空")
     private String driverClassName;
+    @NotBlank(message = "数据源地址不能为空")
+    private String url;
+    @NotBlank(message = "数据源账户名不能为空")
     private String username;
+    @NotBlank(message = "数据源账户密码不能为空")
     private String password;
 
     public String getName() {
@@ -45,6 +54,14 @@ public class DataSourceConfig {
 
     public void setDriverClassName(String driverClassName) {
         this.driverClassName = driverClassName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getUsername() {

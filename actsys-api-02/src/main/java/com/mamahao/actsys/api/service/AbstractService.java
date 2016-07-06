@@ -1,4 +1,4 @@
-package com.mamahao.actsys.api.service.demo;
+package com.mamahao.actsys.api.service;
 
 import tk.mybatis.mapper.common.BaseMapper;
 

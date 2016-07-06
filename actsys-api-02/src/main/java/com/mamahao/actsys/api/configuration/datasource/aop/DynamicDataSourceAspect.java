@@ -1,7 +1,8 @@
-package com.mamahao.actsys.api.configuration.datasource;
+package com.mamahao.actsys.api.configuration.datasource.aop;
 
+import com.mamahao.actsys.api.configuration.datasource.DynamicContextHolder;
+import com.mamahao.actsys.api.configuration.datasource.annotation.TargetDataSource;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -33,7 +34,7 @@ public class DynamicDataSourceAspect {
         TargetDataSource targetDataSource = getTargetDataSource(jp,method);
         if(targetDataSource != null && DynamicContextHolder.containsDataSource(targetDataSource.name())){
             System.out.println("ds.name:" + targetDataSource.name());
-            DynamicContextHolder.setDataSourceKey(targetDataSource.name());
+            DynamicContextHolder.setCurrentDataSource(targetDataSource.name());
         }else {
             String name = method.getName().toLowerCase();
             if(name.startsWith("find")
@@ -41,18 +42,14 @@ public class DynamicDataSourceAspect {
                     || name.startsWith("get")
                     || name.startsWith("search")
                     || name.startsWith("select")){
-                DynamicContextHolder.setDataSourceKey("ds1");
-            }else{
-                DynamicContextHolder.setDefaultDataSource();
+                DynamicContextHolder.setCurrentDataSource("ms0_ds1");
             }
         }
     }
 
-
-
-    @After(value = "serviceAopPoint()")
+//    @After(value = "serviceAopPoint()")
     public void resetDataSource(JoinPoint jp){
-        DynamicContextHolder.clearDataSourceKey();
+        DynamicContextHolder.clearCurrentDataSource();
     }
 
 

@@ -1,4 +1,4 @@
-package com.mamahao.actsys.api.configuration.datasource;
+package com.mamahao.actsys.api.configuration.datasource.annotation;
 
 import java.lang.annotation.*;
 

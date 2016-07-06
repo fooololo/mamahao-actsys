@@ -1,10 +1,10 @@
-package com.mamahao.actsys.api.service.demo.impl;
+package com.mamahao.actsys.api.service.impl;
 
 import com.mamahao.actsys.api.configuration.datasource.TargetDataSource;
 import com.mamahao.actsys.api.mapper.DemoMapper;
 import com.mamahao.actsys.api.po.Demo;
-import com.mamahao.actsys.api.service.demo.AbstractService;
-import com.mamahao.actsys.api.service.demo.DemoService;
+import com.mamahao.actsys.api.service.DemoService;
+import com.mamahao.actsys.api.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.common.BaseMapper;
@@ -17,7 +17,7 @@ import tk.mybatis.mapper.common.BaseMapper;
  * Description    :
  */
 @Service
-public class DemoServiceImpl extends AbstractService<Demo,Long> implements DemoService{
+public class DemoServiceImpl extends AbstractService<Demo,Long> implements DemoService {
     @Autowired
     private DemoMapper demoMapper;
 

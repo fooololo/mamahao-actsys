@@ -1,7 +1,7 @@
 package com.mamahao.actsys.api.service.demo.impl;
 
-import com.mamahao.actsys.api.configuration.datasource.TargetDataSource;
-import com.mamahao.actsys.api.service.demo.AbstractService;
+import com.mamahao.actsys.api.configuration.datasource.annotation.TargetDataSource;
+import com.mamahao.actsys.api.service.AbstractService;
 import com.mamahao.actsys.api.service.demo.DemoService;
 import com.mamahao.actsys.api.mapper.DemoMapper;
 import com.mamahao.actsys.api.po.Demo;
@@ -26,12 +26,12 @@ public class DemoServiceImpl extends AbstractService<Demo,Long> implements DemoS
         return demoMapper;
     }
 
-    @TargetDataSource(name = "ds1")
+    @TargetDataSource(name = "ms1_ds1")
     public Demo findByPrimaryKey(Long id) {
         return super.findByPrimaryKey(id);
     }
 
-    @TargetDataSource(name = "ds2")
+    @TargetDataSource(name = "ms0_ds1")
     public int save(Demo record) {
         return super.save(record);
     }
@@ -41,6 +41,7 @@ public class DemoServiceImpl extends AbstractService<Demo,Long> implements DemoS
         return demoMapper.insert(demo);
     }
 
+    @TargetDataSource(name = "ms2_ds0")
     @Override
     public void test() {
         System.out.println("nothing to do.");

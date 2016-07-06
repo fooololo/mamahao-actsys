@@ -1,6 +1,7 @@
 package com.mamahao.actsys.api.service.demo;
 
 import com.mamahao.actsys.api.po.Demo;
+import com.mamahao.actsys.api.service.BaseService;
 
 /**
  * Company        :   mamahao.com
@@ -9,7 +10,7 @@ import com.mamahao.actsys.api.po.Demo;
  * Time           :   14:39
  * Description    :
  */
-public interface DemoService extends BaseService<Demo,Long>{
+public interface DemoService extends BaseService<Demo,Long> {
     int saveOne(Demo demo);
     void test();
 }

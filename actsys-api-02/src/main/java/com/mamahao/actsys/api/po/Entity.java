@@ -13,11 +13,11 @@ public class Entity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
     @Transient
-    private Integer page;
+    protected Integer page;
     @Transient
-    private Integer pageSize;
+    protected Integer pageSize;
     @Transient
     protected long version;
 

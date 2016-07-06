@@ -1,9 +1,8 @@
 package com.mamahao.actsys.api.service;
 
 import com.mamahao.actsys.api.TestRunner;
-import com.mamahao.actsys.api.configuration.datasource.DataSourceConfig;
-import com.mamahao.actsys.api.configuration.datasource.DataSourceConfigGroup;
-import com.mamahao.actsys.api.configuration.datasource.DataSourceProperties;
+import com.mamahao.actsys.api.configuration.datasource.properties.DataSourceConfigGroup;
+import com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties;
 import com.mamahao.actsys.api.po.Demo;
 import com.mamahao.actsys.api.service.demo.DemoService;
 import org.junit.Test;
@@ -29,7 +28,8 @@ public class DemoServiceTest extends TestRunner {
     @Test
     public void testGetById(){
         Long id = 1L;
-        demoService.findByPrimaryKey(id);
+        Demo demo = demoService.findByPrimaryKey(id);
+        System.out.println(demo.getName());
     }
 
     @Test

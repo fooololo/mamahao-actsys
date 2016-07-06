@@ -1,8 +1,10 @@
 package com.mamahao.actsys.api.configuration.datasource;
 
 import com.google.common.collect.Maps;
+import com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyValues;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -27,14 +29,19 @@ import java.util.Map;
  * Time           :   15:35
  * Description    :
  */
+//@Component
 public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,EnvironmentAware {
     private ConversionService conversionService = new DefaultConversionService();
     private PropertyValues dataSourcePropertyValues;
     //如果配置文件没指定数据源类型，则使用此类型
-    private static final Object DEFAULT_DATASOURCE_TYPE = "org.apache.tomcat.jdbc.pool.DataSource";
+    private static final Object DEFAULT_DATASOURCE_TYPE = "com.alibaba.druid.pool.DruidDataSource";
     //默认数据源
     private DataSource defaultDataSource;
     private Map<String,DataSource> targetDataSources = Maps.newHashMap();
+
+    @Autowired
+    private DataSourceProperties dataSourceProperties;
+
     @Override
     public void setEnvironment(Environment environment) {
         initDefaultDataSource(environment);
@@ -44,6 +51,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
+        System.out.println("======================================================================================");
         Map<Object,Object> targetDataSource = Maps.newHashMap();
         targetDataSource.put("defaultDataSource",defaultDataSource);
         DynamicContextHolder.addDataSource("defaultDataSource");

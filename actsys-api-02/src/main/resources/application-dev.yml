@@ -29,86 +29,88 @@ eureka:
       instanceId: ${spring.application.name}:${random.value}
 
 
-spring:
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-    username: root
-    password: mamahao
-
-custom:
-  datasource:
-    names: ds1,ds2
-    ds1:
-      type: com.alibaba.druid.pool.DruidDataSource
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-      username: root
-      password: mamahao
-    ds2:
-      type: com.alibaba.druid.pool.DruidDataSource
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-      username: root
-      password: mamahao
+#spring:
+#  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+#    username: root
+#    password: mamahao
+#
+#custom:
+#  datasource:
+#    names: ds1,ds2
+#    ds1:
+#      type: com.alibaba.druid.pool.DruidDataSource
+#      driver-class-name: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+#      username: root
+#      password: mamahao
+#    ds2:
+#      type: com.alibaba.druid.pool.DruidDataSource
+#      driver-class-name: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+#      username: root
+#      password: mamahao
 
 #数据源配置
-datasources:
-  - #!com.mamahao.actsys.api.configuration.datasource.DataSourceConfigGroup
-    group-name: ms0
-    items:
-      - #!com.mamahao.actsys.api.configuration.datasource.DataSourceConfig
-        name: ms0_ds0
-        master: true
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-        username: root
-        password: mamahao
-      - #!com.mamahao.actsys.api.configuration.datasource.DataSourceConfig
-        name: ms0_ds1
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-        username: root
-        password: mamahao
-      - #!com.mamahao.actsys.api.configuration.datasource.DataSourceConfig
-        name: ms0_ds1
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-        username: root
-        password: mamahao
-  - #!com.mamahao.actsys.api.configuration.datasource.DataSourceConfigGroup
-    group-name: ms1
-    items:
-      - #!com.mamahao.actsys.api.configuration.datasource.DataSourceConfig
-        name: ms1_ds0
-        master: true
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-        username: root
-        password: mamahao
-      - #!com.mamahao.actsys.api.configuration.datasource.DataSourceConfig
-        name: ms0_ds1
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-        username: root
-        password: mamahao
-  - #!com.mamahao.actsys.api.configuration.datasource.DataSourceConfigGroup
-    group-name: ms2
-    items:
-      - #!com.mamahao.actsys.api.configuration.datasource.DataSourceConfig
-        name: ms2_ds1
-        master: true
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
-        username: root
-        password: mamahao
+datasource:
+  xyz: 123
+  groups:
+    -
+      group-name: ms0
+      items:
+        -
+          name: ms0_ds0
+          master: true
+          type: com.alibaba.druid.pool.DruidDataSource
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+          username: root
+          password: mamahao
+        -
+          name: ms0_ds1
+          type: com.alibaba.druid.pool.DruidDataSource
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+          username: root
+          password: mamahao
+        -
+          name: ms0_ds2
+          type: com.alibaba.druid.pool.DruidDataSource
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+          username: root
+          password: mamahao
+    -
+      group-name: ms1
+      items:
+        -
+          name: ms1_ds0
+          master: true
+          type: com.alibaba.druid.pool.DruidDataSource
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+          username: root
+          password: mamahao
+        -
+          name: ms1_ds1
+          type: com.alibaba.druid.pool.DruidDataSource
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+          username: root
+          password: mamahao
+    -
+      group-name: ms2
+      items:
+        -
+          name: ms2_ds0
+          master: true
+          type: com.alibaba.druid.pool.DruidDataSource
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://172.28.1.6:3306/db_gd_dev?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;rewriteBatchedStatements=true
+          username: root
+          password: mamahao
 
 mybatis:
   config:

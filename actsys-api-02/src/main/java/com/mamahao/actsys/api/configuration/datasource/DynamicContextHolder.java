@@ -13,24 +13,22 @@ import java.util.List;
  */
 public class DynamicContextHolder{
     private static final ThreadLocal<String> holder = new ThreadLocal<String>();
-    public static List<String> dataSourceIds = Lists.newArrayList();
-    public static void setDataSourceKey(String key){
-        holder.set(key);
+    public static List<String> dataSourceNames = Lists.newArrayList();
+    public static void setCurrentDataSource(String name){
+        holder.set(name);
     }
-    public static void setDefaultDataSource(){
-        holder.set("defaultDataSource");
-    }
-    public static String getDataSourceKey(){
+
+    public static String getCurrentDataSource(){
        return holder.get();
     }
-    public static void clearDataSourceKey(){
+    public static void clearCurrentDataSource(){
         holder.remove();
     }
 
     public static boolean containsDataSource(String dataSourceId){
-        return dataSourceIds.contains(dataSourceId);
+        return dataSourceNames.contains(dataSourceId);
     }
-    public static void addDataSource(String dataSourceId){
-        dataSourceIds.add(dataSourceId);
+    public static void addDataSource(String dataSourceName){
+        dataSourceNames.add(dataSourceName);
     }
 }
