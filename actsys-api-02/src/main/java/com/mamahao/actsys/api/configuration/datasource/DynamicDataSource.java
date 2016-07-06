@@ -22,7 +22,7 @@ import java.util.Map;
  * author         :   guxiaolong
  * Date           :   2016/6/29
  * Time           :   10:57
- * Description    :
+ * Description    :   动态数据源，根据绑定在线程中的数据源名称切换实际的数据源
  */
 @Component("dataSource")
 @Order(0)

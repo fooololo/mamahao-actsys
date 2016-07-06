@@ -1,2 +1,0 @@
-这里是放mybatis的mapper.xml文件的目录
-请尽量不使用join查询，推荐单表操作
