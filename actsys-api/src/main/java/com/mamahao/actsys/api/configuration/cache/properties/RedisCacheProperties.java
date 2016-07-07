@@ -1,6 +1,7 @@
 package com.mamahao.actsys.api.configuration.cache.properties;
 
-import com.mamahao.actsys.api.configuration.redis.RedisPoolSchema;
+import com.mamahao.actsys.api.configuration.redis.schema.RedisPoolSchema;
+import com.mamahao.actsys.api.configuration.redis.schema.RedisSentinelSchema;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
@@ -12,7 +13,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
  * Description    :
  */
 @RefreshScope
-@ConfigurationProperties(prefix = "cache.redis")
+@ConfigurationProperties(prefix = "redis.cache")
 public class RedisCacheProperties {
     private int database = 0;
     private String host;
@@ -21,6 +22,7 @@ public class RedisCacheProperties {
     private int timeout = 5;
     private int expire = 60;
     private RedisPoolSchema pool;
+    private RedisSentinelSchema sentinel;
 
     public int getDatabase() {
         return database;
@@ -76,5 +78,13 @@ public class RedisCacheProperties {
 
     public void setPool(RedisPoolSchema pool) {
         this.pool = pool;
+    }
+
+    public RedisSentinelSchema getSentinel() {
+        return sentinel;
+    }
+
+    public void setSentinel(RedisSentinelSchema sentinel) {
+        this.sentinel = sentinel;
     }
 }

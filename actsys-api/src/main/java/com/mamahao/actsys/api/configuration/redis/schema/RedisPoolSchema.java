@@ -1,4 +1,4 @@
-package com.mamahao.actsys.api.configuration.redis;
+package com.mamahao.actsys.api.configuration.redis.schema;
 
 /**
  * Company        :   mamahao.com

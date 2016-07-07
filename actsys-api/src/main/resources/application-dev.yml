@@ -97,9 +97,9 @@ mybatis:
     type-aliases-package: com.mamahao.actsys.api.po
     base-package: com.mamahao.actsys.api.mapper
 
-#缓存redis配置
-cache:
-  redis:
+#redis配置
+redis:
+  cache: #缓存专用
     database: 0
     password:
     host: 172.28.1.14
@@ -111,4 +111,32 @@ cache:
       max-total: 20
       max-wait-millis: 1000
       min-idle: 0
-
+    sentinel:
+      master: redis01
+      nodes:
+        -
+          host: 172.28.1.15
+          port: 6379
+        -
+          host: 172.28.1.16
+          port: 6379
+  persist: #其他业务使用
+    database: 0
+    password:
+    host: 172.28.1.14
+    port: 6379
+    timeout: 200
+    pool:
+      max-idle: 9
+      max-total: 30
+      max-wait-millis: 2000
+      min-idle: 0
+    sentinel:
+      master: redis01
+      nodes:
+        -
+          host: 172.28.1.15
+          port: 6379
+        -
+          host: 172.28.1.16
+          port: 6379

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties;
+import com.mamahao.actsys.api.configuration.redis.schema.RedisSentinelNode;
+import com.mamahao.actsys.api.configuration.redis.schema.RedisSentinelSchema;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -12,7 +14,10 @@ import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisNode;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
@@ -22,6 +27,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * Company        :   mamahao.com
@@ -41,8 +47,24 @@ public class CacheConfig extends CachingConfigurerSupport {
     private RedisCacheProperties redisCacheProperties;
 
     @Bean(name = "redisCacheFactory")
+    @Primary
     public JedisConnectionFactory redisConnectionFactory(){
-        JedisConnectionFactory factory = new JedisConnectionFactory();
+        JedisConnectionFactory factory;
+        if(redisCacheProperties.getSentinel() != null
+                && StringUtils.isNotBlank(redisCacheProperties.getSentinel().getMaster())){
+            RedisSentinelConfiguration sentinelConfiguration = new RedisSentinelConfiguration();
+            RedisSentinelSchema sentinel = redisCacheProperties.getSentinel();
+            sentinelConfiguration.setMaster(sentinel.getMaster());
+            List<RedisSentinelNode> nodes = sentinel.getNodes();
+            for (RedisSentinelNode node : nodes) {
+                sentinelConfiguration.addSentinel(new RedisNode(node.getHost(), node.getPort()));
+            }
+            factory = new JedisConnectionFactory(sentinelConfiguration);
+        }else{
+            factory = new JedisConnectionFactory();
+            factory.setHostName(redisCacheProperties.getHost());
+        }
+
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMaxIdle(redisCacheProperties.getPool().getMaxIdle());
         poolConfig.setMaxWaitMillis(redisCacheProperties.getPool().getMaxWaitMillis());
@@ -53,7 +75,6 @@ public class CacheConfig extends CachingConfigurerSupport {
         factory.setPoolConfig(poolConfig);
 
         factory.setDatabase(redisCacheProperties.getDatabase());
-        factory.setHostName(redisCacheProperties.getHost());
         factory.setTimeout(redisCacheProperties.getTimeout());
         if(StringUtils.isNotBlank(redisCacheProperties.getPassword())){
             factory.setPassword(redisCacheProperties.getPassword());
@@ -70,7 +91,6 @@ public class CacheConfig extends CachingConfigurerSupport {
     }
 
     @Bean(name = "redisCacheTemplate")
-//    @ConditionalOnMissingBean(name = "redisCacheTemplate")
     public StringRedisTemplate redisTemplate(){
         StringRedisTemplate template = new StringRedisTemplate(redisConnectionFactory());
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
@@ -88,25 +108,23 @@ public class CacheConfig extends CachingConfigurerSupport {
         return template;
     }
 
-
     /**
-     * redis key生成器
+     * 自定义key生成器
      * @return
      */
-    @Bean(name = "wiselyKeyGenerator")
-    public KeyGenerator wiselyKeyGenerator(){
+    @Override
+    public KeyGenerator keyGenerator() {
         return new KeyGenerator() {
             @Override
             public Object generate(Object target, Method method, Object... params) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(target.getClass().getName());
-                sb.append(method.getName());
+                sb.append("#").append(method.getName());
                 for (Object obj : params) {
-                    sb.append(obj.toString());
+                    sb.append("#").append(obj.toString());
                 }
                 return sb.toString();
             }
         };
-
     }
 }

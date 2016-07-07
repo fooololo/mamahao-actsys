@@ -22,13 +22,14 @@ public class DemoServiceImpl extends AbstractService<Demo,Long> implements DemoS
     @Autowired
     private DemoMapper demoMapper;
 
+
     @Override
     public BaseMapper getMapper() {
         return demoMapper;
     }
 
     @TargetDataSource(name = "ms1_ds1")
-    @Cacheable(value = "demo_cache",keyGenerator = "wiselyKeyGenerator")
+    @Cacheable(value = "demo_cache")
     public Demo findByPrimaryKey(Long id) {
         System.out.println("没有走缓存...");
         return super.findByPrimaryKey(id);
