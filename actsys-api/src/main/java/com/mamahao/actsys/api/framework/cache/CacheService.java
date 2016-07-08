@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * Description    :
  */
 public interface CacheService{
-    void setCache(Object key,Object value);
-    void setCache(Object key, Object value, long expire, TimeUnit timeUnit);
-    <T> T getCache(Object key);
+    void setCache(String key,Object value);
+    void setCache(String key, Object value, long expire, TimeUnit timeUnit);
+    <T> T getCache(String key);
 }

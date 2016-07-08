@@ -11,6 +11,7 @@ import com.mamahao.actsys.api.service.BaseService;
  * Description    :
  */
 public interface DemoService extends BaseService<Demo,Long> {
-    int saveOne(Demo demo);
     void test();
+    Demo update(Demo demo);
+    void delete(Long id);
 }

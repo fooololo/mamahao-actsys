@@ -25,17 +25,17 @@ public class RedisCacheService extends AbstractRedisService implements CacheServ
     }
 
     @Override
-    public void setCache(Object key, Object value) {
+    public void setCache(String key, Object value) {
         set(key,value);
     }
 
     @Override
-    public void setCache(Object key, Object value, long expire, TimeUnit timeUnit) {
+    public void setCache(String key, Object value, long expire, TimeUnit timeUnit) {
         set(key,value,expire,timeUnit);
     }
 
     @Override
-    public <T> T getCache(Object key) {
+    public <T> T getCache(String key) {
         return get(key);
     }
 }

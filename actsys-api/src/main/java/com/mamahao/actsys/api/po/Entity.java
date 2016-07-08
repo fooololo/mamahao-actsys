@@ -14,7 +14,7 @@ public class Entity implements Serializable{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    protected long id;
     @Transient
     protected Integer page;
     @Transient
@@ -22,11 +22,11 @@ public class Entity implements Serializable{
     @Transient
     protected long version;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

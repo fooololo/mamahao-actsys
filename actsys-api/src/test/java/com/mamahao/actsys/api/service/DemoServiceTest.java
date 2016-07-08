@@ -1,6 +1,5 @@
 package com.mamahao.actsys.api.service;
 
-import com.google.common.collect.Lists;
 import com.mamahao.actsys.api.TestRunner;
 import com.mamahao.actsys.api.configuration.datasource.properties.DataSourceConfigGroup;
 import com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties;
@@ -53,35 +52,25 @@ public class DemoServiceTest extends TestRunner {
     public void testGetById(){
         Long id = 1L;
         Demo demo = demoService.findByPrimaryKey(id);
-        System.out.println(demo.getName());
-//        Object s = redisCacheTemplate.execute(new RedisCallback() {
-//            @Override
-//            public Object doInRedis(RedisConnection connection) throws DataAccessException {
-//                byte[] bytes = connection.get("com.mamahao.actsys.api.service.demo.impl.DemoServiceImpl#findByPrimaryKey#1".getBytes());
-//                return redisCacheTemplate.getValueSerializer().deserialize(bytes);
-//            }
-//        });
-//        Demo d = cacheService.get("com.mamahao.actsys.api.service.demo.impl.DemoServiceImpl#findByPrimaryKey#2");
-        List<Demo> demos = Lists.newArrayList();
-        demos.add(new Demo(1L,"111"));
-        demos.add(new Demo(2L,"222"));
-        demos.add(new Demo(3L,"333"));
-        String key = "test_demos";
-//        cacheService.set(key,demos);
-        List<Demo> ds1 = cacheService.getCache(key);
-        System.out.println("result:" + ds1);
-        List<Demo> ds2 = redisService.get(key);
-        System.out.println("result:" + ds2);
+        System.out.println(demo);
     }
 
+
+
     @Test
-    @Rollback(true)
+    @Rollback(false)
     public void testSave(){
         Demo demo = new Demo();
         demo.setId(1L);
-        demo.setName("sss");
+        demo.setName("111");
         int i = demoService.save(demo);
         System.out.println(i);
+    }
+
+    @Test
+    @Rollback(false)
+    public void testDelete(){
+        demoService.delete(4L);
     }
 
     @Test

@@ -22,11 +22,9 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -100,7 +98,8 @@ public class CacheConfig extends CachingConfigurerSupport {
 
         jackson2JsonRedisSerializer.setObjectMapper(om);
         template.setEnableDefaultSerializer(false);
-        template.setKeySerializer(new StringRedisSerializer(StandardCharsets.UTF_8));
+//        template.setKeySerializer(new StringRedisSerializer(StandardCharsets.UTF_8));
+        template.setKeySerializer(new GenericToStringSerializer<>(Object.class));
         template.setValueSerializer(jackson2JsonRedisSerializer);
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
         template.setHashValueSerializer(new GenericToStringSerializer<>(Object.class));
@@ -119,9 +118,9 @@ public class CacheConfig extends CachingConfigurerSupport {
             public Object generate(Object target, Method method, Object... params) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(target.getClass().getName());
-                sb.append("#").append(method.getName());
+                sb.append("_").append(method.getName());
                 for (Object obj : params) {
-                    sb.append("#").append(obj.toString());
+                    sb.append("_").append(obj.toString());
                 }
                 return sb.toString();
             }

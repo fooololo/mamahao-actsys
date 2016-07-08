@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Time           :   14:52
  * Description    :
  */
-@Table(name = "t_test")
+@Table(name = "t_demo")
 public class Demo extends Entity{
 	public Demo() {
 	}
@@ -27,4 +27,5 @@ public class Demo extends Entity{
 	public void setName(String name) {
 		this.name = name;
 	}
+
 }
