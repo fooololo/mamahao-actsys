@@ -2,6 +2,7 @@ package com.mamahao.actsys.api.framework.cache.impl;
 
 import com.mamahao.actsys.api.framework.cache.CacheService;
 import com.mamahao.actsys.api.framework.redis.AbstractRedisService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  * Description    :
  */
 @Component
+@ConditionalOnBean(name = {"redisCacheTemplate"})
 public class RedisCacheService extends AbstractRedisService implements CacheService{
     @Resource(name = "redisCacheTemplate")
     private RedisTemplate redisTemplate;

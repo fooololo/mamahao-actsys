@@ -1,6 +1,16 @@
 {
   "groups": [
     {
+      "name": "cache.memcached",
+      "type": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
+    },
+    {
+      "name": "cache.redis",
+      "type": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
       "name": "datasource",
       "type": "com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties",
       "sourceType": "com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties"
@@ -11,17 +21,97 @@
       "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
     },
     {
-      "name": "redis.cache",
-      "type": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
-      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
-    },
-    {
-      "name": "redis.persist",
+      "name": "redis.config",
       "type": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties"
     }
   ],
   "properties": [
+    {
+      "name": "cache.memcached.addrs",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
+    },
+    {
+      "name": "cache.memcached.cache-names",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
+    },
+    {
+      "name": "cache.memcached.default-cache-name",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
+    },
+    {
+      "name": "cache.memcached.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
+    },
+    {
+      "name": "cache.memcached.password",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
+    },
+    {
+      "name": "cache.memcached.session-idle-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "cache.memcached.username",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
+    },
+    {
+      "name": "cache.redis.database",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "cache.redis.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
+      "name": "cache.redis.expire",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "defaultValue": 60
+    },
+    {
+      "name": "cache.redis.host",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
+      "name": "cache.redis.password",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
+      "name": "cache.redis.pool",
+      "type": "com.mamahao.actsys.api.configuration.redis.schema.RedisPoolSchema",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
+      "name": "cache.redis.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "cache.redis.sentinel",
+      "type": "com.mamahao.actsys.api.configuration.redis.schema.RedisSentinelSchema",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
+    },
+    {
+      "name": "cache.redis.timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
+      "defaultValue": 5
+    },
     {
       "name": "datasource.groups",
       "type": "java.util.List<com.mamahao.actsys.api.configuration.datasource.properties.DataSourceConfigGroup>",
@@ -64,89 +154,45 @@
       "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
     },
     {
-      "name": "redis.cache.database",
-      "type": "java.lang.Integer",
-      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
-      "defaultValue": 0
-    },
-    {
-      "name": "redis.cache.expire",
-      "type": "java.lang.Integer",
-      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
-      "defaultValue": 60
-    },
-    {
-      "name": "redis.cache.host",
-      "type": "java.lang.String",
-      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
-    },
-    {
-      "name": "redis.cache.password",
-      "type": "java.lang.String",
-      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
-    },
-    {
-      "name": "redis.cache.pool",
-      "type": "com.mamahao.actsys.api.configuration.redis.schema.RedisPoolSchema",
-      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
-    },
-    {
-      "name": "redis.cache.port",
-      "type": "java.lang.Integer",
-      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
-      "defaultValue": 0
-    },
-    {
-      "name": "redis.cache.sentinel",
-      "type": "com.mamahao.actsys.api.configuration.redis.schema.RedisSentinelSchema",
-      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
-    },
-    {
-      "name": "redis.cache.timeout",
-      "type": "java.lang.Integer",
-      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
-      "defaultValue": 5
-    },
-    {
-      "name": "redis.persist.database",
+      "name": "redis.config.database",
       "type": "java.lang.Integer",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties",
       "defaultValue": 0
     },
     {
-      "name": "redis.persist.expire",
+      "name": "redis.config.expire",
       "type": "java.lang.Integer",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties",
       "defaultValue": 0
     },
     {
-      "name": "redis.persist.host",
+      "name": "redis.config.host",
       "type": "java.lang.String",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties"
     },
     {
-      "name": "redis.persist.password",
+      "name": "redis.config.password",
       "type": "java.lang.String",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties"
     },
     {
-      "name": "redis.persist.pool",
+      "name": "redis.config.pool",
       "type": "com.mamahao.actsys.api.configuration.redis.schema.RedisPoolSchema",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties"
     },
     {
-      "name": "redis.persist.port",
+      "name": "redis.config.port",
       "type": "java.lang.Integer",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties",
       "defaultValue": 0
     },
     {
-      "name": "redis.persist.sentinel",
+      "name": "redis.config.sentinel",
       "type": "com.mamahao.actsys.api.configuration.redis.schema.RedisSentinelSchema",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties"
     },
     {
-      "name": "redis.persist.timeout",
+      "name": "redis.config.timeout",
       "type": "java.lang.Integer",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties",
       "defaultValue": 5

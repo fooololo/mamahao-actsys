@@ -9,6 +9,7 @@ import com.mamahao.actsys.api.configuration.redis.schema.RedisSentinelSchema;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -35,7 +36,8 @@ import java.util.List;
  * Description    :     缓存框架配置
  */
 @Configuration
-public class CacheConfig extends CachingConfigurerSupport {
+@ConditionalOnProperty(name = "cache.redis.enabled",havingValue = "true")
+public class RedisCacheConfig extends CachingConfigurerSupport {
     @Bean(name = "redisCacheProperties")
     @ConditionalOnMissingBean
     public RedisCacheProperties redisCacheProperties(){

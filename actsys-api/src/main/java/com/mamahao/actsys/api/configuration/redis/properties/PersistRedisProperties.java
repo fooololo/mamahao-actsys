@@ -13,7 +13,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
  * Description    :
  */
 @RefreshScope
-@ConfigurationProperties(prefix = "redis.persist")
+@ConfigurationProperties(prefix = "redis.config")
 public class PersistRedisProperties {
     private int database = 0;
     private String host;

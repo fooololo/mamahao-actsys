@@ -22,6 +22,8 @@
         <commons.bean.version>1.9.2</commons.bean.version>
         <docker.plugin.version>0.3.258</docker.plugin.version>
         <google.guava.version>19.0</google.guava.version>
+        <google.xmemcached.version>2.0.0</google.xmemcached.version>
+        <google.spring.memcahed.version>3.6.0</google.spring.memcahed.version>
         <project.build.encoding>UTF-8</project.build.encoding>
         <docker.image.prefix>mamhao-ms-artchetype</docker.image.prefix>
         <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
@@ -108,6 +110,26 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate.validator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.simple-spring-memcached</groupId>
+                <artifactId>simple-spring-memcached</artifactId>
+                <version>${google.spring.memcahed.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.simple-spring-memcached</groupId>
+                <artifactId>xmemcached-provider</artifactId>
+                <version>${google.spring.memcahed.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.simple-spring-memcached</groupId>
+                <artifactId>spring-cache</artifactId>
+                <version>${google.spring.memcahed.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.xmemcached</groupId>
+                <artifactId>xmemcached</artifactId>
+                <version>${google.xmemcached.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

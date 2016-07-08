@@ -14,10 +14,10 @@ endpoints:
   shutdown:
     enabled: false
 
-spring:
-  cache:
-    type: redis
-    cache-names: redis-cache
+#spring:
+#  cache:
+#    type: redis
+#    cache-names: redis-cache
 
 
 ##注册中心配置
@@ -97,9 +97,14 @@ mybatis:
     type-aliases-package: com.mamahao.actsys.api.po
     base-package: com.mamahao.actsys.api.mapper
 
+ssm:
+  cache:
+    disable: true
+
 #redis配置
-redis:
-  cache: #缓存专用
+cache:
+  redis: #缓存专用
+    enabled: false
     database: 0
     password:
     host: 172.28.1.14
@@ -120,7 +125,19 @@ redis:
         -
           host: 172.28.1.16
           port: 6379
-  persist: #其他业务使用
+  memcached:
+    enabled: true
+    addrs: 172.28.1.129:11211
+    session-idle-timeout: 10000
+    default-cache-name: default_cache
+    cache-names:
+      - default_cache
+      - test_cache
+      - demo_cache
+
+
+redis:
+  config:
     database: 0
     password:
     host: 172.28.1.14
@@ -140,3 +157,5 @@ redis:
         -
           host: 172.28.1.16
           port: 6379
+
+

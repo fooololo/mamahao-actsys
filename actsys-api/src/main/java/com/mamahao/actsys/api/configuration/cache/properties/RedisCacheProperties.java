@@ -13,8 +13,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
  * Description    :
  */
 @RefreshScope
-@ConfigurationProperties(prefix = "redis.cache")
-public class RedisCacheProperties {
+@ConfigurationProperties(prefix = "cache.redis")
+public class RedisCacheProperties  extends CacheProperties{
     private int database = 0;
     private String host;
     private int port;
