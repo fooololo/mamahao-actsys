@@ -127,13 +127,23 @@ cache:
           port: 6379
   memcached:
     enabled: true
-    addrs: 172.28.1.129:11211
     session-idle-timeout: 10000
     default-cache-name: default_cache
-    cache-names:
-      - default_cache
-      - test_cache
-      - demo_cache
+    default-expire: 1800
+    caches:
+      -
+        name: default_cache
+        expire: 1800
+      -
+        name: test_cache
+        expire: 1800
+      -
+        name: demo_cache
+        expire: 1800
+    addrs:
+      -
+        host: 172.28.1.129
+        port: 11211
 
 
 redis:

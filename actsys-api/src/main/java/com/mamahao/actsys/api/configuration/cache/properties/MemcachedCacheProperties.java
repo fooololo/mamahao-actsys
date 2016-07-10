@@ -1,5 +1,7 @@
 package com.mamahao.actsys.api.configuration.cache.properties;
 
+import com.mamahao.actsys.api.configuration.memcached.schema.MemcachedAddr;
+import com.mamahao.actsys.api.configuration.memcached.schema.MemcachedCacheSchema;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
@@ -15,19 +17,28 @@ import java.util.List;
 @RefreshScope
 @ConfigurationProperties(prefix = "cache.memcached")
 public class MemcachedCacheProperties extends CacheProperties{
-    private String addrs;
+    private List<MemcachedAddr> addrs;
     private String defaultCacheName;
-    private List<String> cacheNames;
+    private List<MemcachedCacheSchema> caches;
     private int sessionIdleTimeout;
+    private int defaultExpire = 1800;
     private String username;
     private String password;
 
-    public String getAddrs() {
+    public List<MemcachedAddr> getAddrs() {
         return addrs;
     }
 
-    public void setAddrs(String addrs) {
+    public void setAddrs(List<MemcachedAddr> addrs) {
         this.addrs = addrs;
+    }
+
+    public List<MemcachedCacheSchema> getCaches() {
+        return caches;
+    }
+
+    public void setCaches(List<MemcachedCacheSchema> caches) {
+        this.caches = caches;
     }
 
     public String getDefaultCacheName() {
@@ -38,20 +49,20 @@ public class MemcachedCacheProperties extends CacheProperties{
         this.defaultCacheName = defaultCacheName;
     }
 
-    public List<String> getCacheNames() {
-        return cacheNames;
-    }
-
-    public void setCacheNames(List<String> cacheNames) {
-        this.cacheNames = cacheNames;
-    }
-
     public int getSessionIdleTimeout() {
         return sessionIdleTimeout;
     }
 
     public void setSessionIdleTimeout(int sessionIdleTimeout) {
         this.sessionIdleTimeout = sessionIdleTimeout;
+    }
+
+    public int getDefaultExpire() {
+        return defaultExpire;
+    }
+
+    public void setDefaultExpire(int defaultExpire) {
+        this.defaultExpire = defaultExpire;
     }
 
     public String getUsername() {

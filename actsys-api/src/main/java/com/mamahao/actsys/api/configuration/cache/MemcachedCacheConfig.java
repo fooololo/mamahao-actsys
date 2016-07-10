@@ -8,6 +8,7 @@ import com.google.code.ssm.providers.xmemcached.XMemcachedConfiguration;
 import com.google.code.ssm.spring.SSMCache;
 import com.google.code.ssm.spring.SSMCacheManager;
 import com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties;
+import com.mamahao.actsys.api.configuration.memcached.schema.MemcachedAddr;
 import net.rubyeye.xmemcached.auth.AuthInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ import java.util.Set;
  */
 @Configuration
 @EnableAspectJAutoProxy
-@ConditionalOnProperty(name = "cache.memcached.enabled",havingValue = "true")
+@ConditionalOnProperty(name = "cache.memcached.enabled.aaa",havingValue = "true")
 @ImportResource("classpath:simplesm-context.xml")
 public class MemcachedCacheConfig extends CachingConfigurerSupport{
     @Bean(name = "memcachedCacheProperties")
@@ -49,7 +50,7 @@ public class MemcachedCacheConfig extends CachingConfigurerSupport{
     @Bean
     @Override
     public CacheManager cacheManager() {
-        Set<SSMCache> ssmCacheSet = new HashSet<>();
+        Set<SSMCache> ssmCacheSet = new HashSet();
         SSMCache ssmCache = new SSMCache(defaultCache(), 300, false);
         ssmCacheSet.add(ssmCache);
         SSMCacheManager ssmCacheManager = new SSMCacheManager();
@@ -64,7 +65,8 @@ public class MemcachedCacheConfig extends CachingConfigurerSupport{
         cacheFactory.setCacheName(memcachedCacheProperties.getDefaultCacheName());
         cacheFactory.setCacheClientFactory(new MemcacheClientFactoryImpl());
 
-        String servers = memcachedCacheProperties.getAddrs();
+        MemcachedAddr addr = memcachedCacheProperties.getAddrs().get(0);
+        String servers = addr.getHost() + "" + addr.getPort();
         XMemcachedConfiguration cacheConfiguration = createCacheConfiguration(servers);
         cacheConfiguration.setConsistentHashing(true);
         cacheFactory.setAddressProvider(new DefaultAddressProvider(servers));
