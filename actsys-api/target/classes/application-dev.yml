@@ -90,6 +90,7 @@ datasource:
           username: root
           password: mamahao
 
+
 #mybatis配置
 mybatis:
   config:
@@ -97,9 +98,6 @@ mybatis:
     type-aliases-package: com.mamahao.actsys.api.po
     base-package: com.mamahao.actsys.api.mapper
 
-ssm:
-  cache:
-    disable: true
 
 #缓存配置
 cache:
@@ -184,3 +182,12 @@ mongo:
       -
         host: 172.28.1.28
         port: 27017
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  data:
+    jpa:
+      repositories:
+        enabled: true
