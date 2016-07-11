@@ -16,6 +16,11 @@
       "sourceType": "com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties"
     },
     {
+      "name": "mongo.config",
+      "type": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties",
+      "sourceType": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties"
+    },
+    {
       "name": "mybatis.config",
       "type": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties",
       "sourceType": "com.mamahao.actsys.api.configuration.mybatis.MybatisProperties"
@@ -122,6 +127,50 @@
       "name": "datasource.groups",
       "type": "java.util.List<com.mamahao.actsys.api.configuration.datasource.properties.DataSourceConfigGroup>",
       "sourceType": "com.mamahao.actsys.api.configuration.datasource.properties.DataSourceProperties"
+    },
+    {
+      "name": "mongo.config.addrs",
+      "type": "java.util.List<com.mamahao.actsys.api.configuration.mongodb.properties.MongoAddr>",
+      "sourceType": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties"
+    },
+    {
+      "name": "mongo.config.commection-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties",
+      "defaultValue": 30000
+    },
+    {
+      "name": "mongo.config.connection-per-host",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties",
+      "defaultValue": 100
+    },
+    {
+      "name": "mongo.config.database",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties"
+    },
+    {
+      "name": "mongo.config.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "mongo.config.max-wait-time",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties",
+      "defaultValue": 30000
+    },
+    {
+      "name": "mongo.config.password",
+      "type": "char[]",
+      "sourceType": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties"
+    },
+    {
+      "name": "mongo.config.username",
+      "type": "java.lang.String",
+      "sourceType": "com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties"
     },
     {
       "name": "mybatis.config.base-package",

@@ -1,12 +1,19 @@
 package com.mamahao.actsys.api.configuration.mongodb;
 
 import com.mamahao.actsys.api.configuration.mongodb.properties.MongoProperties;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.TaggableReadPreference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
-import javax.annotation.PreDestroy;
+import java.net.UnknownHostException;
 
 /**
  * Company        :   mamahao.com
@@ -18,15 +25,54 @@ import javax.annotation.PreDestroy;
 @Configuration
 @ConditionalOnProperty(name = "mongo.config.enable",havingValue = "true")
 public class MongoConfiguration {
+    @Autowired
+    private MongoProperties mongoProperties;
+    @Autowired
+    private Environment environment;
+
+    @Autowired(required = false)
+    private MongoClientOptions options;
+
     @Bean(name = "mongoProperties")
     @ConditionalOnMissingBean
     public MongoProperties mongoProperties(){
         return new MongoProperties();
     }
 
+    @Bean
+    @Primary
+    @ConditionalOnMissingBean(name = "mongoClient")
+    public MongoClient mongoClient() throws UnknownHostException {
+        MongoClient mongoClient = mongoProperties.createMongoClient(this.options);
+        return mongoClient;
+    }
+    @Bean
+    @ConditionalOnMissingBean(name = "mongoClient4Read")
+    public MongoClient mongoClient4Read() throws UnknownHostException {
+        MongoClient mongoClient = mongoProperties.createMongoClient(this.options);
+        mongoClient.setReadPreference(TaggableReadPreference.secondaryPreferred());
+        return mongoClient;
+    }
 
-    @PreDestroy
-    public void destroy(){
+//    @Bean
+//    @ConditionalOnMissingBean(MongoDbFactory.class)
+//    public MongoDbFactory mongoDbFactory() throws Exception {
+//        SimpleMongoDbFactory mongoDbFactory = new SimpleMongoDbFactory(mongoClient(),mongoProperties.getDatabase());
+//        return mongoDbFactory;
+//    }
 
+    @Bean
+    @Primary
+    @ConditionalOnMissingBean(name = "mongoTemplate")
+    public MongoTemplate mongoTemplate() throws Exception {
+        final MongoTemplate mongoTemplate = new MongoTemplate(mongoClient(),mongoProperties.getDatabase());
+        return mongoTemplate;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(name = "mongoTemplate4Read")
+    public MongoTemplate mongoTemplate4Read() throws Exception {
+        final MongoTemplate mongoTemplate = new MongoTemplate(mongoClient4Read(),mongoProperties.getDatabase());
+        return mongoTemplate;
     }
 }

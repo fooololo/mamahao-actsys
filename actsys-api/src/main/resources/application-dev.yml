@@ -171,6 +171,7 @@ redis:
 mongo:
   config:
     enable: true
+    database: mydb
     username: test
     password: test123
     connection-per-host: 100
@@ -183,5 +184,3 @@ mongo:
       -
         host: 172.28.1.28
         port: 27017
-
-mongo
