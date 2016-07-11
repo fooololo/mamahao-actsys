@@ -16,8 +16,8 @@ import java.util.concurrent.TimeUnit;
  * Time           :   10:25
  * Description    :
  */
-@Component
 @ConditionalOnBean(name = {"redisCacheTemplate"})
+@Component
 public class RedisCacheService extends AbstractRedisService implements CacheService{
     @Resource(name = "redisCacheTemplate")
     private RedisTemplate redisTemplate;
@@ -32,12 +32,17 @@ public class RedisCacheService extends AbstractRedisService implements CacheServ
     }
 
     @Override
-    public void setCache(String key, Object value, long expire, TimeUnit timeUnit) {
+    public void setCache(String key, Object value, int expire, TimeUnit timeUnit) {
         set(key,value,expire,timeUnit);
     }
 
     @Override
     public <T> T getCache(String key) {
         return get(key);
+    }
+
+    @Override
+    public void deleteCache(String key) {
+        delete(key);
     }
 }

@@ -29,18 +29,24 @@
   "properties": [
     {
       "name": "cache.memcached.addrs",
-      "type": "java.lang.String",
+      "type": "java.util.List<com.mamahao.actsys.api.configuration.memcached.schema.MemcachedAddr>",
       "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
     },
     {
-      "name": "cache.memcached.cache-names",
-      "type": "java.util.List<java.lang.String>",
+      "name": "cache.memcached.caches",
+      "type": "java.util.List<com.mamahao.actsys.api.configuration.memcached.schema.MemcachedCacheSchema>",
       "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
     },
     {
       "name": "cache.memcached.default-cache-name",
       "type": "java.lang.String",
       "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties"
+    },
+    {
+      "name": "cache.memcached.default-expire-seconds",
+      "type": "java.lang.Integer",
+      "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties",
+      "defaultValue": 1800
     },
     {
       "name": "cache.memcached.enable",
@@ -75,10 +81,10 @@
       "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties"
     },
     {
-      "name": "cache.redis.expire",
+      "name": "cache.redis.expire-seconds",
       "type": "java.lang.Integer",
       "sourceType": "com.mamahao.actsys.api.configuration.cache.properties.RedisCacheProperties",
-      "defaultValue": 60
+      "defaultValue": 1800
     },
     {
       "name": "cache.redis.host",

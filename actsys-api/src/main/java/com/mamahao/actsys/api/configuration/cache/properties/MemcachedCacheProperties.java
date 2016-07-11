@@ -21,7 +21,7 @@ public class MemcachedCacheProperties extends CacheProperties{
     private String defaultCacheName;
     private List<MemcachedCacheSchema> caches;
     private int sessionIdleTimeout;
-    private int defaultExpire = 1800;
+    private int defaultExpireSeconds = 1800;
     private String username;
     private String password;
 
@@ -57,12 +57,12 @@ public class MemcachedCacheProperties extends CacheProperties{
         this.sessionIdleTimeout = sessionIdleTimeout;
     }
 
-    public int getDefaultExpire() {
-        return defaultExpire;
+    public int getDefaultExpireSeconds() {
+        return defaultExpireSeconds;
     }
 
-    public void setDefaultExpire(int defaultExpire) {
-        this.defaultExpire = defaultExpire;
+    public void setDefaultExpireSeconds(int defaultExpireSeconds) {
+        this.defaultExpireSeconds = defaultExpireSeconds;
     }
 
     public String getUsername() {

@@ -34,6 +34,7 @@ public class MemcacheCacheManger extends AbstractTransactionSupportingCacheManag
                 cacheExpires.put(name,expire);
             }
             cache = new MemcachedCacheImpl(name,memcachedClient,expire);
+            caches.put(name,cache);
         }
         return cache;
     }

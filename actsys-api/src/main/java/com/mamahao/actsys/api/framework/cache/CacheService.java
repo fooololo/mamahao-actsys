@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 public interface CacheService{
     void setCache(String key,Object value);
-    void setCache(String key, Object value, long expire, TimeUnit timeUnit);
+    void setCache(String key, Object value, int expire, TimeUnit timeUnit);
     <T> T getCache(String key);
+    void deleteCache(String key);
 }

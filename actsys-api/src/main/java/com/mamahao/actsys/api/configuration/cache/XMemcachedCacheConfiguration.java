@@ -1,6 +1,5 @@
 package com.mamahao.actsys.api.configuration.cache;
 
-import com.google.code.ssm.providers.xmemcached.XMemcachedConfiguration;
 import com.mamahao.actsys.api.configuration.cache.memcached.MemcacheCacheManger;
 import com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties;
 import com.mamahao.actsys.api.configuration.memcached.schema.MemcachedAddr;
@@ -17,8 +16,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.ImportResource;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -28,12 +25,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by huluohu on 2016/7/10.
+ * 缓存框架配置（memcached），支持事务
  */
 @Configuration
 @ConditionalOnProperty(name = "cache.memcached.enabled",havingValue = "true")
 //@ImportResource("classpath:simplesm-context.xml")
-public class XMemcachedCacheConfig {
+public class XMemcachedCacheConfiguration {
     @Bean(name = "memcachedCacheProperties")
     @ConditionalOnMissingBean
     public MemcachedCacheProperties memcachedCacheProperties(){
@@ -61,12 +58,11 @@ public class XMemcachedCacheConfig {
         return clientBuilder;
     }
 
-    @Bean
+    @Bean(name = "memcachedClient")
     public MemcachedClient memcachedClient(){
-        MemcachedClientBuilder clientBuilder = clientBuilder();
         MemcachedClient client = null;
         try {
-            client = clientBuilder.build();
+            client = clientBuilder().build();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,7 +76,7 @@ public class XMemcachedCacheConfig {
         List<MemcachedCacheSchema> caches = memcachedCacheProperties.getCaches();
         Map<String,Integer> cacheExpires = new HashMap<String, Integer>();
         for (MemcachedCacheSchema cache : caches) {
-            cacheExpires.put(cache.getName(),cache.getExpire());
+            cacheExpires.put(cache.getName(),cache.getExpireSeconds());
         }
         cacheManger.setCacheExpires(cacheExpires);
         return cacheManger;

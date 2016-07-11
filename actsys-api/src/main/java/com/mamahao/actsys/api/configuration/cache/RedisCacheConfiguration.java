@@ -33,11 +33,11 @@ import java.util.List;
  * author         :   guxiaolong
  * Date           :   2016/7/6
  * Time           :   14:10
- * Description    :     缓存框架配置
+ * Description    :     缓存框架配置（redis），支持事务
  */
 @Configuration
 @ConditionalOnProperty(name = "cache.redis.enabled",havingValue = "true")
-public class RedisCacheConfig extends CachingConfigurerSupport {
+public class RedisCacheConfiguration extends CachingConfigurerSupport {
     @Bean(name = "redisCacheProperties")
     @ConditionalOnMissingBean
     public RedisCacheProperties redisCacheProperties(){
@@ -86,7 +86,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
     @Bean
     public CacheManager cacheManager() {
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate());
-        cacheManager.setDefaultExpiration(redisCacheProperties.getExpire());
+        cacheManager.setDefaultExpiration(redisCacheProperties.getExpireSeconds());
         return cacheManager;
     }
 

@@ -5,7 +5,7 @@ package com.mamahao.actsys.api.configuration.memcached.schema;
  */
 public class MemcachedCacheSchema {
     private String name;
-    private int expire = 1800;
+    private int expireSeconds = 1800;
 
     public String getName() {
         return name;
@@ -15,11 +15,11 @@ public class MemcachedCacheSchema {
         this.name = name;
     }
 
-    public int getExpire() {
-        return expire;
+    public int getExpireSeconds() {
+        return expireSeconds;
     }
 
-    public void setExpire(int expire) {
-        this.expire = expire;
+    public void setExpireSeconds(int expireSeconds) {
+        this.expireSeconds = expireSeconds;
     }
 }

@@ -23,14 +23,14 @@ public class MemcachedCacheImpl implements Cache {
 
     @Override
     public Object getNativeCache() {
-        return memCache;
+        return this.memCache;
     }
 
     @Override
     public ValueWrapper get(Object key) {
         Object cacheValue = memCache.get(key.toString());
         ValueWrapper vw = (cacheValue != null) ? new SimpleValueWrapper(cacheValue):null;
-        return null;
+        return vw;
     }
 
     @Override

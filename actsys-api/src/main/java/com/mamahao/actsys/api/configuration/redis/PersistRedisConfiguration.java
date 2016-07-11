@@ -31,7 +31,7 @@ import java.util.List;
  * Description    :
  */
 @Configuration
-public class PersistRedisConfig {
+public class PersistRedisConfiguration {
     @Bean(name = "persistRedisProperties")
     @ConditionalOnMissingBean
     public PersistRedisProperties persistRedisProperties(){

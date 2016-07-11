@@ -31,13 +31,13 @@ import java.util.Set;
  * author         :   guxiaolong
  * Date           :   2016/7/8
  * Time           :   10:07
- * Description    :
+ * Description    :     ssm方式配置spring cache + memcached，但是只能配置一个cache，放弃了
  */
 @Configuration
 @EnableAspectJAutoProxy
-@ConditionalOnProperty(name = "cache.memcached.enabled.aaa",havingValue = "true")
+@ConditionalOnProperty(name = "cache.memcached.ssm.enabled",havingValue = "true")
 @ImportResource("classpath:simplesm-context.xml")
-public class MemcachedCacheConfig extends CachingConfigurerSupport{
+public class MemcachedCacheConfiguration extends CachingConfigurerSupport{
     @Bean(name = "memcachedCacheProperties")
     @ConditionalOnMissingBean
     public MemcachedCacheProperties memcachedCacheProperties(){

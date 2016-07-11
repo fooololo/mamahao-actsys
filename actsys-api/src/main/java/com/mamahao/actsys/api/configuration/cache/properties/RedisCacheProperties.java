@@ -20,7 +20,7 @@ public class RedisCacheProperties  extends CacheProperties{
     private int port;
     private String password;
     private int timeout = 5;
-    private int expire = 60;
+    private int expireSeconds = 1800;
     private RedisPoolSchema pool;
     private RedisSentinelSchema sentinel;
 
@@ -64,12 +64,12 @@ public class RedisCacheProperties  extends CacheProperties{
         this.timeout = timeout;
     }
 
-    public int getExpire() {
-        return expire;
+    public int getExpireSeconds() {
+        return expireSeconds;
     }
 
-    public void setExpire(int expire) {
-        this.expire = expire;
+    public void setExpireSeconds(int expireSeconds) {
+        this.expireSeconds = expireSeconds;
     }
 
     public RedisPoolSchema getPool() {
