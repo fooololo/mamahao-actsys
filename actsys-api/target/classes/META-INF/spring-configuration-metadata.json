@@ -29,6 +29,11 @@
       "name": "redis.config",
       "type": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties"
+    },
+    {
+      "name": "spring.data.jpa",
+      "type": "com.mamahao.actsys.api.configuration.jpa.properties.JpaApplicationProperties",
+      "sourceType": "com.mamahao.actsys.api.configuration.jpa.properties.JpaApplicationProperties"
     }
   ],
   "properties": [
@@ -251,6 +256,16 @@
       "type": "java.lang.Integer",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties",
       "defaultValue": 5
+    },
+    {
+      "name": "spring.data.jpa.base-packages",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.mamahao.actsys.api.configuration.jpa.properties.JpaApplicationProperties"
+    },
+    {
+      "name": "spring.data.jpa.entity-packages",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.mamahao.actsys.api.configuration.jpa.properties.JpaApplicationProperties"
     }
   ],
   "hints": []

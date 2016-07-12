@@ -11,7 +11,6 @@ import org.springframework.core.io.Resource;
  * Time           :   12:03
  * Description    :
  */
-//@Component
 @ConfigurationProperties(prefix = "mybatis.config")
 public class MybatisProperties {
     private String config;

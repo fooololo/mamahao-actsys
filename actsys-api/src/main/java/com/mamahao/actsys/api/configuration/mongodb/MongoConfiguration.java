@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.net.UnknownHostException;
@@ -27,8 +26,6 @@ import java.net.UnknownHostException;
 public class MongoConfiguration {
     @Autowired
     private MongoProperties mongoProperties;
-    @Autowired
-    private Environment environment;
 
     @Autowired(required = false)
     private MongoClientOptions options;

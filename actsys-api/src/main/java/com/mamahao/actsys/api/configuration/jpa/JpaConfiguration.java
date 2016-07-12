@@ -1,7 +1,9 @@
 package com.mamahao.actsys.api.configuration.jpa;
 
 import com.mamahao.actsys.api.configuration.datasource.DynamicDataSource;
+import com.mamahao.actsys.api.configuration.jpa.properties.JpaApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -24,7 +26,7 @@ import java.util.Map;
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
 @ConditionalOnBean(name = "dataSource")
-@AutoConfigureAfter(DynamicDataSource.class)
+@AutoConfigureAfter(value = {DynamicDataSource.class,JpaApplicationProperties.class})
 @EnableJpaRepositories(
         basePackages = {"com.mamahao.actsys.api.dao.sql"},
         transactionManagerRef = "jpaTransactionManager")
@@ -32,20 +34,37 @@ import java.util.Map;
 public class JpaConfiguration {
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private JpaApplicationProperties jpaApplicationProperties;
+
+    @Value("${spring.jpa.hibernate.ddl-auto}")
+    private String hibernateDdlAuto;
+    @Value("${spring.jpa.show-sql}")
+    private boolean showSql;
+    @Value("${spring.jpa.openInView}")
+    private boolean openInView;
+    @Value("${spring.jpa.properties.hibernate.dialect}")
+    private String dialect;
+
+    @Bean(name = "jpaApplicationProperties")
+    @ConditionalOnMissingBean
+    public JpaApplicationProperties jpaApplicationProperties(){
+        return new JpaApplicationProperties();
+    }
 
     @Bean(name = "entityManagerFactory")
     @ConditionalOnMissingBean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setDataSource(dataSource);
-        factory.setPackagesToScan(new String[]{"com.mamahao.actsys.api.po"});
+        factory.setPackagesToScan(jpaApplicationProperties.getEntityPackages().toArray(new String[]{}));
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         factory.setJpaVendorAdapter(vendorAdapter);
 
         Map<String,Object> properties = new HashMap<>();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.dialect", dialect);
+        properties.put("hibernate.show_sql", showSql);
         factory.setJpaPropertyMap(properties);
         return factory;
     }

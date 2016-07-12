@@ -18,8 +18,8 @@ import java.util.concurrent.TimeoutException;
  * Time           :   9:41
  * Description    :
  */
-@ConditionalOnBean(name = "memcachedClient")
 @Component
+@ConditionalOnBean(name = "memcachedClient")
 public class MemcachedCacheService implements CacheService {
     @Autowired
     private MemcachedClient memcachedClient;

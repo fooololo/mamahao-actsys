@@ -1,6 +1,7 @@
 package com.mamahao.actsys.api.framework.redis.impl;
 
 import com.mamahao.actsys.api.framework.redis.AbstractRedisService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
  * Description    :
  */
 @Component(value = "persistRedisService")
+@ConditionalOnBean(name = {"persistRedisTemplate"})
 public class PersistRedisServiceImpl extends AbstractRedisService {
     @Resource(name = "persistRedisTemplate")
     private RedisTemplate redisTemplate;

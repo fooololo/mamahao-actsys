@@ -190,7 +190,12 @@ spring:
     jpa:
       repositories:
         enabled: true
+      base-packages:
+        -
+          com.mamahao.actsys.api.dao.sql
+      entity-packages:
+        -
+          com.mamahao.actsys.api.po
     mongodb:
       repositories:
         enabled: true
-
