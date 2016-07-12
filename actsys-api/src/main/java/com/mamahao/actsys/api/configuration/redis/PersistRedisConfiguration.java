@@ -9,6 +9,7 @@ import com.mamahao.actsys.api.configuration.redis.schema.RedisSentinelSchema;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisNode;
@@ -31,6 +32,7 @@ import java.util.List;
  * Description    :
  */
 @Configuration
+@ConditionalOnProperty(name = "redis.config.enabled",havingValue = "true")
 public class PersistRedisConfiguration {
     @Bean(name = "persistRedisProperties")
     @ConditionalOnMissingBean

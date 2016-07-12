@@ -44,7 +44,7 @@ public class JpaConfiguration {
         factory.setJpaVendorAdapter(vendorAdapter);
 
         Map<String,Object> properties = new HashMap<>();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         properties.put("hibernate.show_sql", "true");
         factory.setJpaPropertyMap(properties);
         return factory;

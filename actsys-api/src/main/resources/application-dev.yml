@@ -14,12 +14,6 @@ endpoints:
   shutdown:
     enabled: false
 
-#spring:
-#  cache:
-#    type: redis
-#    cache-names: redis-cache
-
-
 ##注册中心配置
 eureka:
   client:
@@ -33,7 +27,6 @@ eureka:
 
 #数据源配置
 datasource:
-  xyz: 123
   groups:
     -
       group-name: ms0
@@ -94,6 +87,7 @@ datasource:
 #mybatis配置
 mybatis:
   config:
+    enabled: true
     mapper-locations: classpath*:mapper/*Mapper.xml
     type-aliases-package: com.mamahao.actsys.api.po
     base-package: com.mamahao.actsys.api.mapper
@@ -146,6 +140,7 @@ cache:
 
 redis:
   config:
+    enabled: true
     database: 0
     password:
     host: 172.28.1.14
@@ -168,7 +163,7 @@ redis:
 
 mongo:
   config:
-    enable: true
+    enabled: true
     database: mydb
     username: test
     password: test123
@@ -189,6 +184,8 @@ spring:
     show-sql: true
     openInView: false
     properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
   data:
     jpa:
       repositories:

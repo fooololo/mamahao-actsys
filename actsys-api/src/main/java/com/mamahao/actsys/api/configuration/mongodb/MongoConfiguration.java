@@ -23,7 +23,7 @@ import java.net.UnknownHostException;
  * Description    :
  */
 @Configuration
-@ConditionalOnProperty(name = "mongo.config.enable",havingValue = "true")
+@ConditionalOnProperty(name = "mongo.config.enabled",havingValue = "true")
 public class MongoConfiguration {
     @Autowired
     private MongoProperties mongoProperties;

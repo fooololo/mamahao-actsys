@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +36,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableConfigurationProperties(MybatisProperties.class)
 @ConditionalOnClass({ SqlSessionFactory.class, SqlSessionFactoryBean.class })
+@ConditionalOnProperty(name = "mybatis.config.enabled",havingValue = "true")
 @AutoConfigureAfter(DataSourceAutoConfiguration.class)
 public class MybatisAutoConfiguration {
     @Autowired
