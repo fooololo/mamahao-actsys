@@ -2,7 +2,7 @@ package com.mamahao.actsys.api.dao;
 
 import com.mamahao.actsys.api.TestRunner;
 import com.mamahao.actsys.api.configuration.jpa.JpaConfiguration;
-import com.mamahao.actsys.api.dao.repository.DemoRepository;
+import com.mamahao.actsys.api.dao.sql.DemoRepository;
 import com.mamahao.actsys.api.po.Demo;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class JpaTest extends TestRunner {
 
 
     @Test
-    public void testFind(){
+    public void testFindOne(){
         Demo demo = demoRepository.findOne(1L);
         System.out.println(demo);
     }

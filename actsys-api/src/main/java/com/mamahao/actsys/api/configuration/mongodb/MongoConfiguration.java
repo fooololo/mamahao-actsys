@@ -54,12 +54,6 @@ public class MongoConfiguration {
         return mongoClient;
     }
 
-//    @Bean
-//    @ConditionalOnMissingBean(MongoDbFactory.class)
-//    public MongoDbFactory mongoDbFactory() throws Exception {
-//        SimpleMongoDbFactory mongoDbFactory = new SimpleMongoDbFactory(mongoClient(),mongoProperties.getDatabase());
-//        return mongoDbFactory;
-//    }
 
     @Bean
     @Primary

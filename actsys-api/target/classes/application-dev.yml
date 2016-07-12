@@ -187,7 +187,13 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    openInView: false
+    properties:
   data:
     jpa:
       repositories:
         enabled: true
+    mongodb:
+      repositories:
+        enabled: true
+

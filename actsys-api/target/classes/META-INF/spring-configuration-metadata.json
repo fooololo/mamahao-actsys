@@ -29,6 +29,11 @@
       "name": "redis.config",
       "type": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties",
       "sourceType": "com.mamahao.actsys.api.configuration.redis.properties.PersistRedisProperties"
+    },
+    {
+      "name": "spring",
+      "type": "com.mamahao.actsys.api.configuration.jpa.properties.JpaProperties",
+      "sourceType": "com.mamahao.actsys.api.configuration.jpa.properties.JpaProperties"
     }
   ],
   "properties": [

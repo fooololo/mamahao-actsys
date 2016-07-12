@@ -9,6 +9,6 @@ import java.util.List;
 /**
  * Created by huluohu on 2016/7/11.
  */
-public interface MSSSDao extends PagingAndSortingRepository<SSS,String> {
+public interface SSSRepository extends PagingAndSortingRepository<SSS,String> {
     List<SSS> findByShopId(Long shopId, Pageable pageable);
 }
