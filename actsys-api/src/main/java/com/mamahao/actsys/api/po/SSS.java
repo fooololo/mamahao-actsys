@@ -1,6 +1,5 @@
 package com.mamahao.actsys.api.po;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;

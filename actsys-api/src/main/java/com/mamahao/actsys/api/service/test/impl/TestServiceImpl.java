@@ -19,7 +19,7 @@ import tk.mybatis.mapper.common.BaseMapper;
  */
 @Service
 @CacheConfig(cacheNames = {"test_cache"})
-public class TestServiceImpl extends AbstractService<Test,Long> implements TestService{
+public class TestServiceImpl extends AbstractService<Test,Long> implements TestService {
     @Autowired
     private TestMapper testMapper;
     @Override

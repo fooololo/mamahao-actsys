@@ -1,10 +1,8 @@
 package com.mamahao.actsys.api.dao.mongo;
 
-import com.mamahao.actsys.api.po.Demo;
 import com.mamahao.actsys.api.po.SSS;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

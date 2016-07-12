@@ -2,24 +2,21 @@ package com.mamahao.actsys.api.configuration.jpa;
 
 import com.mamahao.actsys.api.configuration.datasource.DynamicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManager;
 import javax.sql.DataSource;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -30,40 +27,36 @@ import java.util.Map;
 @ConditionalOnBean(name = "dataSource")
 @ConditionalOnProperty(name = "spring.data.jpa.repositories.enabled",havingValue = "true")
 @AutoConfigureAfter(DynamicDataSource.class)
-@EnableJpaRepositories(basePackages = "com.mamahao.actsys.api.dao.db",
+@EnableJpaRepositories(basePackages = "com.mamahao.actsys.api.dao.repository",
         transactionManagerRef = "jpaTransactionManager")
 @EnableTransactionManagement
 public class JpaConfiguration {
-    @Resource(name = "dataSource")
-    private DataSource dataSource;
     @Autowired
-    private JpaProperties jpaProperties;
-    @Bean
-    public EntityManager entityManager(EntityManagerFactoryBuilder builder){
-        EntityManager entityManager = entityManagerFactory(builder).getObject().createEntityManager();
-        return entityManager;
-    }
+    private DataSource dataSource;
 
     @Bean(name = "entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
-        LocalContainerEntityManagerFactoryBean managerFactoryBean = builder
-                .dataSource(dataSource)
-                .properties(getVendorProperties(dataSource))
-                .packages(new String[]{"com.mamahao.actsys.api.po"}) //设置实体类所在位置
-                .persistenceUnit("datasource")
-                .build();
-        return managerFactoryBean;
-    }
+    @ConditionalOnMissingBean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        factory.setDataSource(dataSource);
+        factory.setPackagesToScan(new String[]{"com.mamahao.actsys.api.po"});
 
-    private Map<String, String> getVendorProperties(DataSource dataSource) {
-        return jpaProperties.getHibernateProperties(dataSource);
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        factory.setJpaVendorAdapter(vendorAdapter);
+
+        Map<String,Object> properties = new HashMap<>();
+        properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        properties.put("hibernate.show_sql", "true");
+        factory.setJpaPropertyMap(properties);
+//        factory.afterPropertiesSet();
+        return factory;
     }
 
 
     @Bean(name = "jpaTransactionManager")
-    public PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {
+    public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory(builder).getObject());
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
 }

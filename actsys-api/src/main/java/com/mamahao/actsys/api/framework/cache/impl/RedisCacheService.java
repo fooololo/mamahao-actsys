@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 @ConditionalOnBean(name = {"redisCacheTemplate"})
 @Component
-public class RedisCacheService extends AbstractRedisService implements CacheService{
+public class RedisCacheService extends AbstractRedisService implements CacheService {
     @Resource(name = "redisCacheTemplate")
     private RedisTemplate redisTemplate;
     @Override

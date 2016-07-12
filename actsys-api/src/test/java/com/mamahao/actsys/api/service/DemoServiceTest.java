@@ -1,7 +1,6 @@
 package com.mamahao.actsys.api.service;
 
 import com.mamahao.actsys.api.TestRunner;
-import com.mamahao.actsys.api.dao.db.DemoDao;
 import com.mamahao.actsys.api.po.Demo;
 import com.mamahao.actsys.api.service.demo.DemoService;
 import org.junit.Test;
@@ -19,8 +18,7 @@ import org.springframework.test.annotation.Rollback;
 public class DemoServiceTest extends TestRunner {
     @Autowired
     private DemoService demoService;
-    @Autowired
-    private DemoDao demoDao;
+
 //    @Autowired
 //    private DataSourceProperties dataSourceProperties;
 //    @Resource(name = "redisCacheTemplate")
@@ -67,11 +65,4 @@ public class DemoServiceTest extends TestRunner {
     public void testDelete(){
         demoService.delete(4L);
     }
-
-    @Test
-    public void testFind(){
-        Demo demo = demoDao.findOne(1L);
-        System.out.println(demo);
-    }
-
 }

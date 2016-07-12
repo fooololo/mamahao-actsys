@@ -1,6 +1,6 @@
 package com.mamahao.actsys.api.po;
 
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Company        :   mamahao.com
@@ -10,7 +10,11 @@ import javax.persistence.Table;
  * Description    :
  */
 @Table(name = "t_test")
-public class Test extends Entity{
+public class Test extends BaseEntity {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long id;
     private String title;
     private String des;
 
@@ -26,6 +30,14 @@ public class Test extends Entity{
         this.id = id;
         this.title = title;
         this.des = des;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {

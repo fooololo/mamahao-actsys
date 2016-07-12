@@ -10,25 +10,14 @@ import java.io.Serializable;
  * Time           :   16:08
  * Description    :
  */
-public class Entity implements Serializable{
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected long id;
+
+public class BaseEntity implements Serializable{
     @Transient
     protected Integer page;
     @Transient
     protected Integer pageSize;
     @Transient
     protected long version;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public Integer getPage() {
         return page;

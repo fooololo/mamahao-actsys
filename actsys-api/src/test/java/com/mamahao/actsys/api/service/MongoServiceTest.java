@@ -1,11 +1,10 @@
 package com.mamahao.actsys.api.service;
 
-import com.google.common.collect.Lists;
 import com.mamahao.actsys.api.TestRunner;
-import com.mamahao.actsys.api.dao.mongo.MSSSDao;
 import com.mamahao.actsys.api.framework.mongo.MongoService;
 import com.mamahao.actsys.api.mongo.Sss;
 import com.mamahao.actsys.api.po.SSS;
+import com.mamahao.actsys.api.dao.mongo.MSSSDao;
 import org.bson.types.ObjectId;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,7 @@ public class MongoServiceTest extends TestRunner {
 
     @Test
     public void testFindPage(){
-        Long shopId = 111L;
+        Long shopId = 12312L;
         Sort sort = new Sort(Sort.Direction.ASC,"id");
         PageRequest pageRequest = new PageRequest(1,10,sort);
         List<SSS> ssses = msssDao.findByShopId(shopId, pageRequest);

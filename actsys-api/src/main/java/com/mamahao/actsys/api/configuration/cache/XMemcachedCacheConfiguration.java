@@ -1,8 +1,8 @@
 package com.mamahao.actsys.api.configuration.cache;
 
+import com.mamahao.actsys.api.configuration.memcached.schema.MemcachedAddr;
 import com.mamahao.actsys.api.configuration.cache.memcached.MemcacheCacheManger;
 import com.mamahao.actsys.api.configuration.cache.properties.MemcachedCacheProperties;
-import com.mamahao.actsys.api.configuration.memcached.schema.MemcachedAddr;
 import com.mamahao.actsys.api.configuration.memcached.schema.MemcachedCacheSchema;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.MemcachedClientBuilder;
